@@ -38,6 +38,7 @@ export default class CreateCuppingForm extends Component{
     
     try {
       await fetch(`${DATABASE_URL}/add`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
