@@ -52,7 +52,7 @@ export default class CreateCuppingForm extends Component{
         console.error(error);
       }      
     }
-    this.props.navigation.navigate("내 커핑폼");
+    this.props.navigation.goBack();
   }
 
   render(){
@@ -119,7 +119,7 @@ export default class CreateCuppingForm extends Component{
           {/* 참고: https://stackoverflow.com/questions/45998744/react-this-state-is-undefined */}
           <TouchableOpacity 
           onPress={this.addForm.bind(this)}
-          onPress={() => this.props.navigation.goBack()}>
+          >
             <Text>저장</Text>
           </TouchableOpacity>
         </Footer>
