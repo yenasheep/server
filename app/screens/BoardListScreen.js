@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import { Card, Fab, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Container } from 'native-base';
+import { Entypo } from '@expo/vector-icons';
 /*
 export default class BoardListScreen extends  Component{
   render() {
@@ -114,7 +115,7 @@ export default class CardCompnent extends Component{
         style={{ backgroundColor: '#5067FF' }}
         position="bottomRight"
         onPress={() => this.props.navigation.navigate('CreateFeed')}>
-        <Icon name="share" />
+        <Entypo name="plus" size={24} color="black" />
       </Fab>      
       </Container>
     );

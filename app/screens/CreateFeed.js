@@ -5,9 +5,32 @@ import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import { FontAwesome } from '@expo/vector-icons';
-import CameraRoll from './CameraRoll';
+import pickImage from './CameraRoll';
+
 
 export default class CreateFeed extends Component{    
+    
+    imagePicker = async () => {
+        // expo permission
+        console.log(error.message);
+        const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        try {
+          if (status === "granted") {
+            // pick image
+            const result = await ImagePicker.launchImageLibraryAsync({
+              mediaTypes: ImagePicker.MediaTypeOptions.Images, // only images are allowed
+            }).catch((error) => console.log(error));
+            // canceled process
+            if (!result.cancelled) {
+              const imageUrl = await this.uploadImageFetch(result.uri);
+              this.props.onSend({ image: imageUrl });
+            }
+          }
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+
     render(){
         return(
             <Container>
@@ -18,15 +41,17 @@ export default class CreateFeed extends Component{
                     </Form>
                     <Form>
                         <Textarea rowSpan={15} bordered placeholder="내용" 
-                        onChangeText= {(text) => this.setState({listText: text})}/>
+                        onChangeText= {(text) => this.setState({listText: text})}
+                        />
+                        
                     </Form>
                     <Form>
-                        <Button transparent>
+                        <Button transparent
+                        onpress ={this.imagePicker}>
                             <FontAwesome name="photo" 
                             size={24} 
                             color="green"
                             style= {styles.photo}
-                            onpress ={CameraRoll}
                             />
                         </Button>
                     </Form>
