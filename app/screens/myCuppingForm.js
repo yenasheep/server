@@ -28,7 +28,7 @@ export default class MyCuppingForm extends Component{
         <Card>
           {this.state.forms.map(form => (
             <CardItem key={form.evaluation_index}>
-              <Text>{form.evaluation_index}</Text>
+              <Text>{form.sample}</Text>
               <Right>
                 <Icon name='arrow-forward' style={{}}/>
               </Right>
