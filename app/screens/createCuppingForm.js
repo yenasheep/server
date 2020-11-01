@@ -37,13 +37,18 @@ export default class CreateCuppingForm extends Component{
     form.user_num = 0;
     
     try {
-      await fetch(`${DATABASE_URL}/add`, {
+      const res = await fetch(`${DATABASE_URL}/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(form)
       });
+      if (res.status >= 400 && res.status < 600) {
+        const err = await res.text();
+        throw err;
+      }
+      this.props.navigation.goBack();
     } catch (error) {
       console.error(error);
       if (Platform.OS == "android") {
@@ -52,7 +57,6 @@ export default class CreateCuppingForm extends Component{
         console.error(error);
       }      
     }
-    this.props.navigation.goBack();
   }
 
   render(){
