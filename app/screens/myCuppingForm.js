@@ -27,6 +27,13 @@ export default class MyCuppingForm extends Component{
 
   componentDidMount() {
     this.refreshList();
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      this.refreshList();
+    })
+  }
+
+  componentWillUnmount() {
+    this._unsubscribe();
   }
 
   render(){
