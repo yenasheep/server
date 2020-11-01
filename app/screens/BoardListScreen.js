@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import { Card, Fab, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Container } from 'native-base';
-
-import { BOARD_URL } from "../../conf";
 /*
 export default class BoardListScreen extends  Component{
   render() {
@@ -66,69 +64,49 @@ export default class CardCompnent extends Component{
   constructor(props) {
     super(props)
     this.state = {
-      active: false,
-      posts: []
+      active: false
     };
-  }
-
-  async refreshList() {
-    const res = await fetch(BOARD_URL);
-    const result = await res.json();
-    this.setState({posts: result});
-  }
-
-  componentDidMount() {
-    this.refreshList();
-    this._unsubscribe = this.props.navigation.addListener('focus', () => {
-      this.refreshList();
-    })
-  }
-
-  componentWillUnmount() {
-    this._unsubscribe();
   }
 
   render(){
     
     return (
       <Container>
-      {this.state.posts.map(post => (
-        <Card>
-          <CardItem>
-            <Left>
-              <Thumbnail source={{ uri: '' }} />
-              <Body>
-                <Text>{post.board_title}</Text>
-                <Text note>{post.board_date}</Text>
-              </Body>
-            </Left>
-          </CardItem>
-          <CardItem cardBody>
-            <Image 
-              source={{ uri: '' }} 
-              style={{ height:200, width:null, flex: 1 }} />
-          </CardItem>
-          <CardItem style={{ height:45 }}>
-            <Left>
-              <Button transparent>
-                <Icon name='thumbs-up' style={{ color:'black' }}/>
-              </Button>
-              <Button transparent>
-                <Icon name='ios-chatbubbles' style={{ color:'black' }}/>
-              </Button>
-            </Left>
-          </CardItem>
-          <CardItem style={{ height: 20 }}>
-            <Text>101 likes</Text>
-          </CardItem>
-          <CardItem>
-            <Text>
-              <Text style={{ fontWeight:'900'}}>구준</Text>
-              {"\t"} 텍스트
-            </Text>
-          </CardItem>
-        </Card>
-      ))}
+      <Card>
+        <CardItem>
+          <Left>
+            <Thumbnail source={{ uri: '' }} />
+            <Body>
+              <Text>구준</Text>
+              <Text note>Jan 21, 2019</Text>
+            </Body>
+          </Left>
+        </CardItem>
+        <CardItem cardBody>
+          <Image 
+            source={{ uri: '' }} 
+            style={{ height:200, width:null, flex: 1 }} />
+        </CardItem>
+        <CardItem style={{ height:45 }}>
+          <Left>
+            <Button transparent>
+              <Icon name='thumbs-up' style={{ color:'black' }}/>
+            </Button>
+            <Button transparent>
+              <Icon name='ios-chatbubbles' style={{ color:'black' }}/>
+            </Button>
+          </Left>
+        </CardItem>
+        <CardItem style={{ height: 20 }}>
+          <Text>101 likes</Text>
+        </CardItem>
+        <CardItem>
+          <Text>
+            <Text style={{ fontWeight:'900'}}>구준</Text>
+             {"\t"} 텍스트
+          </Text>
+        </CardItem>
+      </Card>
       <Fab
         active={this.state.active}
         direction="up"
