@@ -10,9 +10,18 @@ export default class MyCuppingForm extends Component{
   constructor(props) {
     super(props)
     this.state = {
-      active: false
+      active: false,
+      forms: []
     };
   }
+
+  async componentDidMount() {
+    const url = "http://10.0.2.2:2020/db";
+    const res = await fetch(url);
+    const result = await res.json();
+    this.setState({forms: result});
+  }
+
   render(){
     return (
       <Container>
@@ -23,6 +32,11 @@ export default class MyCuppingForm extends Component{
               <Icon name='arrow-forward' style={{}} />
             </Right>  
           </CardItem>
+          {this.state.forms.map(form => (
+            <CardItem key={form.evaluation_index}>
+              <Text>{form.evaluation_index}</Text>
+            </CardItem>
+          ))}
         </Card>
         <Fab
             active={this.state.active}
