@@ -8,37 +8,26 @@ import { DATABASE_URL } from "../../conf";
 export default class CreateCuppingForm extends Component{
   state = {
     form: {
-      name: '',
+      form_name: '',
       fragrance: '',
       flavor: '',
-      aftertaste: '',
+      afterTaste: '',
       acidity: '',
       body: '',
       uniformity: '',
       balance: '',
-      cleancup: '',
+      cleanCup: '',
       sweetness: '',
       overall: '',
     }
   }
 
   async addForm() {
-    let form = {};
-    const nameMap = {
-      name: "form_name",
-      fragrance: "fragrance",
-      aftertaste: "afterTaste",
-      cleancup: "cleanCup"
-    };
-
-    // this.state를 가지고 backend가 이해할 수 있도록 form 변수에다가 변환.
-    for (const key in this.state.form) {
-      const convertedKey = (typeof nameMap[key] !== "undefined") ? nameMap[key] : key;
-      form[convertedKey] = this.state.form[key];
-    }
-    // 임시 유저
-    form.user_num = 0;
-    
+    const form = {
+      ...this.state.form,
+      // 임시 유저
+      user_num: 0
+    };    
     try {
       const res = await fetch(`${DATABASE_URL}/add`, {
         method: "POST",
@@ -74,7 +63,7 @@ export default class CreateCuppingForm extends Component{
           <Item regular>
           <Input 
           placeholder='Name'
-          onChangeText= {(text) => this.onChangeText("name", text)}/>
+          onChangeText= {(text) => this.onChangeText("form_name", text)}/>
           </Item>
           <Item regular>
           <Input 
@@ -89,7 +78,7 @@ export default class CreateCuppingForm extends Component{
           <Item regular>
           <Input 
           placeholder='Aftertaste' 
-          onChangeText= {(text) => this.onChangeText("aftertaste", text)}/>
+          onChangeText= {(text) => this.onChangeText("afterTaste", text)}/>
           </Item>
           <Item regular>
           <Input 
@@ -114,7 +103,7 @@ export default class CreateCuppingForm extends Component{
           <Item regular>
           <Input 
           placeholder='Cleanup' 
-          onChangeText= {(text) => this.onChangeText("cleancup", text)}/>
+          onChangeText= {(text) => this.onChangeText("cleanCup", text)}/>
           </Item>
           <Item regular>
           <Input 
