@@ -46,7 +46,13 @@ export default class CreateCuppingForm extends Component{
       });
     } catch (error) {
       console.error(error);
+      if (Platform.OS == "android") {
+        ToastAndroid.show(error.toString(), ToastAndroid.SHORT);
+      } else {
+        console.error(error);
+      }      
     }
+    this.props.navigation.navigate("내 커핑폼");
   }
 
   render(){
@@ -111,7 +117,11 @@ export default class CreateCuppingForm extends Component{
         </Content>
         <Footer>
           {/* 참고: https://stackoverflow.com/questions/45998744/react-this-state-is-undefined */}
-          <Text onPress={this.addForm.bind(this)}>저장</Text>
+          <TouchableOpacity 
+          onPress={this.addForm.bind(this)}
+          onPress={() => this.props.navigation.goBack()}>
+            <Text>저장</Text>
+          </TouchableOpacity>
         </Footer>
       </Container>
     );

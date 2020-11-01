@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
-import { Card, Fab, Form, CardItem, Textarea, Thumbnail, Body, Left, Right, Button, Icon, Container, Content } from 'native-base'
+import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Card, Fab, Form, CardItem, Textarea, Footer, Thumbnail, Body, Left, Right, Button, Icon, Container, Content } from 'native-base'
 import { Camera } from 'expo-camera';
 
 export default class CreateFeed extends Component{
@@ -19,9 +19,21 @@ export default class CreateFeed extends Component{
             <Container>
                 <Content>
                     <Form>
-                        <Textarea rowSpan={20} bordered placeholder="Textarea" />
+                        <Textarea rowSpan={2} bordered placeholder="제목"
+                        onChangeText= {(text) => this.setState({listTitle: text})}/>
+                    </Form>
+                    <Form>
+                        <Textarea rowSpan={15} bordered placeholder="내용" 
+                        onChangeText= {(text) => this.setState({listText: text})}/>
                     </Form>
                 </Content>
+                <Footer>
+                    <TouchableOpacity
+                    onPress={() => this.props.navigation.goBack()}
+                    >
+                        <Text>글쓰기</Text>
+                    </TouchableOpacity>
+                </Footer>
             </Container>
         );
     }
