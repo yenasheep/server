@@ -51,11 +51,6 @@ export default class CreateCuppingForm extends Component{
       this.props.navigation.goBack();
     } catch (error) {
       console.error(error);
-      if (Platform.OS == "android") {
-        ToastAndroid.show(error.toString(), ToastAndroid.SHORT);
-      } else {
-        console.error(error);
-      }      
     }
   }
 
