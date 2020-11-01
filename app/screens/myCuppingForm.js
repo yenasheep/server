@@ -42,7 +42,9 @@ export default class MyCuppingForm extends Component{
             <CardItem key={form.evaluation_index}>
               <Text>{form.form_name}</Text>
               <Right>
-                <Icon name='arrow-forward' style={{}}/>
+                <Icon name='arrow-forward' style={{}}
+                onPress={() => this.props.navigation.navigate('CreateCuppingForm', {mode: 'edit', id: form.evaluation_index})}
+                />
               </Right>
             </CardItem>
           ))}
@@ -53,7 +55,7 @@ export default class MyCuppingForm extends Component{
             containerStyle={{ }}
             style={{ backgroundColor: '#5067FF' }}
             position="bottomRight"
-            onPress={() => this.props.navigation.navigate('CreateCuppingForm')}
+            onPress={() => this.props.navigation.navigate('CreateCuppingForm', {mode: 'add'})}
             >
             <Icon name="share" />
         </Fab>

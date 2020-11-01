@@ -48,6 +48,39 @@ export default class CreateCuppingForm extends Component{
     }
   }
 
+  componentDidMount() {
+    this._unsubscribe = this.props.navigation.addListener('focus', async () => {
+      const {mode, id} = this.props.route.params;
+      if (mode == 'edit') {
+        try {
+          const res = await fetch(`${DATABASE_URL}/${id}`);
+          const result = await res.json();
+          this.setState({form: result});
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        this.setState({form: {
+          form_name: '',
+          fragrance: '',
+          flavor: '',
+          afterTaste: '',
+          acidity: '',
+          body: '',
+          uniformity: '',
+          balance: '',
+          cleanCup: '',
+          sweetness: '',
+          overall: '',
+        }});
+      }
+    })
+  }
+
+  componentWillUnmount() {
+    this._unsubscribe();
+  }
+
   onChangeText(field, text) {
     this.setState(state => {
       let form = {...state.form};
@@ -63,56 +96,67 @@ export default class CreateCuppingForm extends Component{
           <Item regular>
           <Input 
           placeholder='Name'
+          value={this.state.form.form_name}
           onChangeText= {(text) => this.onChangeText("form_name", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Fragrance' 
+          value={this.state.form.fragrance.toString()}
           onChangeText= {(text) => this.onChangeText("fragrance", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Flavor' 
+          value={this.state.form.flavor.toString()}
           onChangeText= {(text) => this.onChangeText("flavor", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Aftertaste' 
+          value={this.state.form.afterTaste.toString()}
           onChangeText= {(text) => this.onChangeText("afterTaste", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Acidity' 
+          value={this.state.form.acidity.toString()}
           onChangeText= {(text) => this.onChangeText("acidity", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Body' 
+          value={this.state.form.body.toString()}
           onChangeText= {(text) => this.onChangeText("body", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Uniformity' 
+          value={this.state.form.uniformity.toString()}
           onChangeText= {(text) => this.onChangeText("uniformity", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Balance' 
+          value={this.state.form.balance.toString()}
           onChangeText= {(text) => this.onChangeText("balance", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Cleanup' 
+          value={this.state.form.cleanCup.toString()}
           onChangeText= {(text) => this.onChangeText("cleanCup", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Sweetness' 
+          value={this.state.form.sweetness.toString()}
           onChangeText= {(text) => this.onChangeText("sweetness", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Over All' 
+          value={this.state.form.overall.toString()}
           onChangeText= {(text) => this.onChangeText("overall", text)}/>
           </Item>
         </Content>
