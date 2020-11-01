@@ -110,7 +110,8 @@ export default class CreateCuppingForm extends Component{
           </Item>
         </Content>
         <Footer>
-          <Text onPress={this.addForm}>저장</Text>
+          {/* 참고: https://stackoverflow.com/questions/45998744/react-this-state-is-undefined */}
+          <Text onPress={this.addForm.bind(this)}>저장</Text>
         </Footer>
       </Container>
     );
