@@ -23,13 +23,21 @@ export default class CreateCuppingForm extends Component{
   }
 
   async addForm() {
+    const {mode, id} = this.props.route.params;
     const form = {
       ...this.state.form,
       // 임시 유저
       user_num: 0
     };    
     try {
-      const res = await fetch(`${DATABASE_URL}/add`, {
+      let url = '';
+      if (mode == 'add') {
+        url = `${DATABASE_URL}/add`;
+      } else if (mode == 'edit') {
+        url = `${DATABASE_URL}/${id}/edit`;
+      }
+
+      const res = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
