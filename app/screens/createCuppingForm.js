@@ -109,7 +109,7 @@ export default class CreateCuppingForm extends Component{
           </Item>
         </Content>
         <Footer>
-          <Text>저장</Text>
+          <Text onPress={this.addForm}>저장</Text>
         </Footer>
       </Container>
     );
