@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Alert, TouchableOpacity, Image, TextInput} from "react-native";
-import { Platform, ToastAndroid } from "react-native";
 import { Container, Footer, Text, Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Input, Item, Content } from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -46,14 +45,8 @@ export default class CreateCuppingForm extends Component{
         body: JSON.stringify(form)
       });
     } catch (error) {
-      if (Platform.OS == "android") {
-        ToastAndroid.show(error.toString(), ToastAndroid.SHORT);
-      } else {
-        console.error(error);
-      }
+      console.error(error);
     }
-
-    this.props.navigation.navigate("내 커핑폼");
   }
 
   render(){
