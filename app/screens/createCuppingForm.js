@@ -20,28 +20,12 @@ export default class CreateCuppingForm extends Component{
     overall: '',
   }
 
-  calculateTotal() {
-    const attrs = [
-      "fragrance",
-      "flavor",
-      "aftertaste",
-      "acidity",
-      "body",
-      "uniformity",
-      "balance",
-      "cleancup",
-      "sweetness",
-      "overall"
-    ];
-    return attrs.reduce((prev, curr) => prev + parseFloat(this.state[curr]), 0);
-  }
-
   async addForm() {
     let form = {};
     const nameMap = {
-      name: "sample",
-      fragrance: "fragAroma",
-      body: "bodiness",
+      name: "form_name",
+      fragrance: "fragrance",
+      aftertaste: "afterTaste",
       cleancup: "cleanCup"
     };
 
@@ -49,8 +33,8 @@ export default class CreateCuppingForm extends Component{
       const convertedKey = (typeof nameMap[key] !== "undefined") ? nameMap[key] : key;
       form[convertedKey] = this.state[key];
     }
-    form.total = this.calculateTotal();
-    form.defects = 0;
+    // 임시 유저
+    form.user_num = 0;
     
     try {
       await fetch(`${DATABASE_URL}/add`, {
