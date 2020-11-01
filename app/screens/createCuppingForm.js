@@ -89,6 +89,16 @@ export default class CreateCuppingForm extends Component{
     })
   }
 
+  textValue(value) {
+    if (typeof value === "string") {
+      return value;
+    } else if (typeof value === "number") {
+      return value.toString();
+    } else {
+      return "";
+    }
+  }
+
   render(){
     return (
       <Container>
@@ -96,67 +106,67 @@ export default class CreateCuppingForm extends Component{
           <Item regular>
           <Input 
           placeholder='Name'
-          value={this.state.form.form_name}
+          value={this.textValue(this.state.form.form_name)}
           onChangeText= {(text) => this.onChangeText("form_name", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Fragrance' 
-          value={this.state.form.fragrance.toString()}
+          value={this.textValue(this.state.form.fragrance)}
           onChangeText= {(text) => this.onChangeText("fragrance", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Flavor' 
-          value={this.state.form.flavor.toString()}
+          value={this.textValue(this.state.form.flavor)}
           onChangeText= {(text) => this.onChangeText("flavor", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Aftertaste' 
-          value={this.state.form.afterTaste.toString()}
+          value={this.textValue(this.state.form.afterTaste)}
           onChangeText= {(text) => this.onChangeText("afterTaste", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Acidity' 
-          value={this.state.form.acidity.toString()}
+          value={this.textValue(this.state.form.acidity)}
           onChangeText= {(text) => this.onChangeText("acidity", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Body' 
-          value={this.state.form.body.toString()}
+          value={this.textValue(this.state.form.body)}
           onChangeText= {(text) => this.onChangeText("body", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Uniformity' 
-          value={this.state.form.uniformity.toString()}
+          value={this.textValue(this.state.form.uniformity)}
           onChangeText= {(text) => this.onChangeText("uniformity", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Balance' 
-          value={this.state.form.balance.toString()}
+          value={this.textValue(this.state.form.balance)}
           onChangeText= {(text) => this.onChangeText("balance", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Cleanup' 
-          value={this.state.form.cleanCup.toString()}
+          value={this.textValue(this.state.form.cleanCup)}
           onChangeText= {(text) => this.onChangeText("cleanCup", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Sweetness' 
-          value={this.state.form.sweetness.toString()}
+          value={this.textValue(this.state.form.sweetness)}
           onChangeText= {(text) => this.onChangeText("sweetness", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Over All' 
-          value={this.state.form.overall.toString()}
+          value={this.textValue(this.state.form.overall)}
           onChangeText= {(text) => this.onChangeText("overall", text)}/>
           </Item>
         </Content>
