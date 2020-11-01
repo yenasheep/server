@@ -3,19 +3,65 @@ import { View, StyleSheet, Alert, TouchableOpacity, Image, TextInput} from "reac
 import { Container, Footer, Text, Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Input, Item, Content } from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
 
+import { DATABASE_URL } from "../../conf";
+
 export default class CreateCuppingForm extends Component{
   state = {
     name: '',
-    fragrance: 0,
-    flavor: 0,
-    aftertaste: 0,
-    acidity: 0,
-    body: 0,
-    uniformity: 0,
-    balance: 0,
-    cleancup: 0,
-    sweetness: 0,
-    overall: 0,
+    fragrance: '',
+    flavor: '',
+    aftertaste: '',
+    acidity: '',
+    body: '',
+    uniformity: '',
+    balance: '',
+    cleancup: '',
+    sweetness: '',
+    overall: '',
+  }
+
+  calculateTotal() {
+    const attrs = [
+      "fragrance",
+      "flavor",
+      "aftertaste",
+      "acidity",
+      "body",
+      "uniformity",
+      "balance",
+      "cleancup",
+      "sweetness",
+      "overall"
+    ];
+    return attrs.reduce((prev, curr) => prev + parseFloat(this.state[curr]), 0);
+  }
+
+  async addForm() {
+    let form = {};
+    const nameMap = {
+      name: "sample",
+      fragrance: "fragAroma",
+      body: "bodiness",
+      cleancup: "cleanCup"
+    };
+
+    for (const key in this.state) {
+      const convertedKey = (typeof nameMap[key] !== "undefined") ? nameMap[key] : key;
+      form[convertedKey] = this.state[key];
+    }
+    form.total = this.calculateTotal();
+    form.defects = 0;
+    
+    try {
+      await fetch(`${DATABASE_URL}/add`, {
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(form)
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   render(){
