@@ -7,17 +7,19 @@ import { DATABASE_URL } from "../../conf";
 
 export default class CreateCuppingForm extends Component{
   state = {
-    name: '',
-    fragrance: '',
-    flavor: '',
-    aftertaste: '',
-    acidity: '',
-    body: '',
-    uniformity: '',
-    balance: '',
-    cleancup: '',
-    sweetness: '',
-    overall: '',
+    form: {
+      name: '',
+      fragrance: '',
+      flavor: '',
+      aftertaste: '',
+      acidity: '',
+      body: '',
+      uniformity: '',
+      balance: '',
+      cleancup: '',
+      sweetness: '',
+      overall: '',
+    }
   }
 
   async addForm() {
@@ -30,9 +32,9 @@ export default class CreateCuppingForm extends Component{
     };
 
     // this.state를 가지고 backend가 이해할 수 있도록 form 변수에다가 변환.
-    for (const key in this.state) {
+    for (const key in this.state.form) {
       const convertedKey = (typeof nameMap[key] !== "undefined") ? nameMap[key] : key;
-      form[convertedKey] = this.state[key];
+      form[convertedKey] = this.state.form[key];
     }
     // 임시 유저
     form.user_num = 0;
@@ -57,6 +59,14 @@ export default class CreateCuppingForm extends Component{
     }
   }
 
+  onChangeText(field, text) {
+    this.setState(state => {
+      let form = {...state.form};
+      form[field] = text;
+      return {form};
+    })
+  }
+
   render(){
     return (
       <Container>
@@ -64,57 +74,57 @@ export default class CreateCuppingForm extends Component{
           <Item regular>
           <Input 
           placeholder='Name'
-          onChangeText= {(text) => this.setState({name: text})}/>
+          onChangeText= {(text) => this.onChangeText("name", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Fragrance' 
-          onChangeText= {(text) => this.setState({fragrance: text})}/>
+          onChangeText= {(text) => this.onChangeText("fragrance", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Flavor' 
-          onChangeText= {(text) => this.setState({flavor: text})}/>
+          onChangeText= {(text) => this.onChangeText("flavor", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Aftertaste' 
-          onChangeText= {(text) => this.setState({aftertaste: text})}/>
+          onChangeText= {(text) => this.onChangeText("aftertaste", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Acidity' 
-          onChangeText= {(text) => this.setState({acidity: text})}/>
+          onChangeText= {(text) => this.onChangeText("acidity", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Body' 
-          onChangeText= {(text) => this.setState({body: text})}/>
+          onChangeText= {(text) => this.onChangeText("body", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Uniformity' 
-          onChangeText= {(text) => this.setState({uniformity: text})}/>
+          onChangeText= {(text) => this.onChangeText("uniformity", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Balance' 
-          onChangeText= {(text) => this.setState({balance: text})}/>
+          onChangeText= {(text) => this.onChangeText("balance", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Cleanup' 
-          onChangeText= {(text) => this.setState({cleancup: text})}/>
+          onChangeText= {(text) => this.onChangeText("cleancup", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Sweetness' 
-          onChangeText= {(text) => this.setState({sweetness: text})}/>
+          onChangeText= {(text) => this.onChangeText("sweetness", text)}/>
           </Item>
           <Item regular>
           <Input 
           placeholder='Over All' 
-          onChangeText= {(text) => this.setState({overall: text})}/>
+          onChangeText= {(text) => this.onChangeText("overall", text)}/>
           </Item>
         </Content>
         <Footer>
