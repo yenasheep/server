@@ -29,6 +29,7 @@ export default class CreateCuppingForm extends Component{
       cleancup: "cleanCup"
     };
 
+    // this.state를 가지고 backend가 이해할 수 있도록 form 변수에다가 변환.
     for (const key in this.state) {
       const convertedKey = (typeof nameMap[key] !== "undefined") ? nameMap[key] : key;
       form[convertedKey] = this.state[key];
@@ -44,10 +45,12 @@ export default class CreateCuppingForm extends Component{
         },
         body: JSON.stringify(form)
       });
+
       if (res.status >= 400 && res.status < 600) {
         const err = await res.text();
         throw err;
       }
+
       this.props.navigation.goBack();
     } catch (error) {
       console.error(error);
