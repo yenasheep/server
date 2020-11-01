@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Alert, TouchableOpacity, Image, TextInput} from "react-native";
-import { Container, Footer, Text, Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Input, Item } from 'native-base';
+import { Container, Footer, Text, Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Input, Item, Content } from 'native-base';
+import { FlatList } from 'react-native-gesture-handler';
 
 export default class CreateCuppingForm extends Component{
   state = {
@@ -20,7 +21,66 @@ export default class CreateCuppingForm extends Component{
   render(){
     return (
       <Container>
-        <Text>s</Text>
+        <Content>
+          <Item regular>
+          <Input 
+          placeholder='Name'
+          onChangeText= {(text) => this.setState({name: text})}/>
+          </Item>
+          <Item regular>
+          <Input 
+          placeholder='Fragrance' 
+          onChangeText= {(text) => this.setState({fragrance: text})}/>
+          </Item>
+          <Item regular>
+          <Input 
+          placeholder='Flavor' 
+          onChangeText= {(text) => this.setState({flavor: text})}/>
+          </Item>
+          <Item regular>
+          <Input 
+          placeholder='Aftertaste' 
+          onChangeText= {(text) => this.setState({aftertaste: text})}/>
+          </Item>
+          <Item regular>
+          <Input 
+          placeholder='Acidity' 
+          onChangeText= {(text) => this.setState({acidity: text})}/>
+          </Item>
+          <Item regular>
+          <Input 
+          placeholder='Body' 
+          onChangeText= {(text) => this.setState({body: text})}/>
+          </Item>
+          <Item regular>
+          <Input 
+          placeholder='Uniformity' 
+          onChangeText= {(text) => this.setState({uniformity: text})}/>
+          </Item>
+          <Item regular>
+          <Input 
+          placeholder='Balance' 
+          onChangeText= {(text) => this.setState({balance: text})}/>
+          </Item>
+          <Item regular>
+          <Input 
+          placeholder='Cleanup' 
+          onChangeText= {(text) => this.setState({cleancup: text})}/>
+          </Item>
+          <Item regular>
+          <Input 
+          placeholder='Sweetness' 
+          onChangeText= {(text) => this.setState({sweetness: text})}/>
+          </Item>
+          <Item regular>
+          <Input 
+          placeholder='Over All' 
+          onChangeText= {(text) => this.setState({overall: text})}/>
+          </Item>
+        </Content>
+        <Footer>
+          <Text>저장</Text>
+        </Footer>
       </Container>
     );
   }
