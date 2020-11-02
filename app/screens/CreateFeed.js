@@ -4,16 +4,6 @@ import { Card, Fab, Form, CardItem, Textarea, Footer, Thumbnail, Body, Left, Rig
 import { Camera } from 'expo-camera';
 
 export default class CreateFeed extends Component{
-    state = {
-        hasPermission: null,
-    }
-
-    componentDidMount = async () => {
-        const { status } = await Permissions.askAsync(Permissions.CAMERA)
-      
-        console.log(status)
-    }
-    
     render(){
         return(
             <Container>
