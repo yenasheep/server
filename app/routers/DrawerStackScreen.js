@@ -10,7 +10,7 @@ import ImageListScreen from "../screens/ImageListScreen";
 import AboutScreen from "../screens/AboutScreen";
 import Icon from "react-native-vector-icons/Ionicons";
 import MenuButton from "./MenuButton";
-import LoginScreen from "../screens/LoginScreen";
+
 
 const Drawer = createDrawerNavigator();
 
@@ -49,7 +49,7 @@ const LoginStackScreen = ({ navigation }) => {
   return (
     <LoginStack.Navigator>
       <LoginStack.Screen
-        name= "login"
+        name= "Login"
         component={LoginScreen}
         options={{
           headerLeft: () => <MenuButton />,
