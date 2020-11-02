@@ -6,13 +6,12 @@ import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import { FontAwesome } from '@expo/vector-icons';
 import pickImage from './CameraRoll';
-
+import * as Permissions from 'expo-permissions';
 
 export default class CreateFeed extends Component{    
     
     imagePicker = async () => {
         // expo permission
-        console.log(error.message);
         const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
         try {
           if (status === "granted") {
@@ -45,17 +44,18 @@ export default class CreateFeed extends Component{
                         />
                         
                     </Form>
-                    <Form>
-                        <Button transparent
-                        onpress ={this.imagePicker}>
-                            <FontAwesome name="photo" 
+                    
+                    
+                </Content>
+                <TouchableOpacity
+                        onPress ={() => this.imagePicker()}>
+                        <FontAwesome 
+                            name="photo" 
                             size={24} 
                             color="green"
                             style= {styles.photo}
-                            />
-                        </Button>
-                    </Form>
-                </Content>
+                        />
+                    </TouchableOpacity>
                 <Footer>
                     <TouchableOpacity
                     onPress={() => this.props.navigation.goBack()}
