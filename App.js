@@ -13,12 +13,13 @@ export default function App() {
   return (
     <NavigationContainer>
       <SafeAreaView style={{ flex: 1 }}>
-        <MyStack />
+        <DrawerStackScreen />
+        
       </SafeAreaView>
     </NavigationContainer>
   );
 }
-
+//로그인 아직 미구현 일단 로그인화면 들어가려면 <Dra.. 부분에 <Login />로 변결
 
 const Stack = createStackNavigator();
 function MyStack() {
