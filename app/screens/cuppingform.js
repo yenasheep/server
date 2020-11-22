@@ -26,7 +26,7 @@ const formListScreen = ({ navigation }) => {
       <TouchableOpacity style= {styles.list}
       onPress={() => navigation.push("Acidity")}
       >
-        <Text style= {styles.text}>Acidty</Text>
+        <Text style= {styles.text}>Acidity</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style= {styles.list}
@@ -42,9 +42,9 @@ const formListScreen = ({ navigation }) => {
       </TouchableOpacity>
 
       <TouchableOpacity style= {styles.list}
-      onPress={() => navigation.push("Body")}
+      onPress={() => navigation.push("Bodiness")}
       >
-        <Text style= {styles.text}>Body</Text>
+        <Text style= {styles.text}>Bodiness</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style= {styles.list}
@@ -93,4 +93,3 @@ const styles = StyleSheet.create({
     textAlign: 'right'
   },
 });
-
